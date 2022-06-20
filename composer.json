@@ -1,0 +1,32 @@
+{
+    "name": "boxc/tracking",
+    "description": "A dictionary of tracking events supported by BoxC.",
+    "type": "library",
+    "license": "Apache 2.0",
+    "keywords": [
+        "php",
+        "track",
+        "boxc"
+    ],
+    "config": {
+        "platform": {
+            "php": "5.5"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "BoxC\\Tracking\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Justin Pope",
+            "email": "justin@boxc.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^4"
+    }
+}
