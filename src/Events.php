@@ -21,7 +21,7 @@ use BoxC\Tracking\Exceptions\EventException;
 
 class Events {
 
-    const FILE_LOCATION = __DIR__."/data/events.json";
+    const FILE_LOCATION = "/data/events.json";
 
     /**
      * @var $dict List of events
@@ -35,7 +35,7 @@ class Events {
      */
     public function __construct()
     {
-        $events = file_get_contents(self::FILE_LOCATION);
+        $events = file_get_contents(__DIR__.self::FILE_LOCATION);
         $this->dict = json_decode($events, true);
     }
 
@@ -61,7 +61,7 @@ class Events {
      * 
      * @return array
      */
-    public function list()
+    public function getAll()
     {
         return $this->dict;
     }

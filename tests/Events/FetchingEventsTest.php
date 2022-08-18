@@ -26,7 +26,7 @@ final class FetchingEventsTest extends TestCase
     public function testListEvents()
     {
         $obj = new Events();
-        $events = $obj->list(true);
+        $events = $obj->getAll();
         // $this->assertIsArray($events);
         $this->assertNotEmpty($events);
     }
