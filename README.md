@@ -13,8 +13,8 @@ For listing and getting events:
 
 ```php
 $cls = new BoxC\Tracking\Events();
-// returns array of all events
-$cls->list();
+// returns associated array of all events with key being the event code
+$cls->getAll();
 
 // outputs an event description
 $cls->get(100);
