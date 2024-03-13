@@ -1,15 +1,8 @@
-<phpunit
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    backupGlobals="true"
-    colors="true"
-    failOnRisky="true"
-    backupStaticAttributes="false"
-    bootstrap="vendor/autoload.php">
-
-    <testsuites>
-        <testsuite name="Events">
-            <directory>tests/Events</directory>
-        </testsuite>
-    </testsuites>
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd" backupGlobals="true" colors="true" failOnRisky="true" bootstrap="vendor/autoload.php" cacheDirectory=".phpunit.cache" backupStaticProperties="false">
+  <testsuites>
+    <testsuite name="Events">
+      <directory>tests/Events</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

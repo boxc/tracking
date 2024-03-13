@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 BoxC Logistics
+ * Copyright 2024 BoxC Logistics
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,14 @@ namespace Tests\Events;
 
 use PHPUnit\Framework\TestCase;
 use BoxC\Tracking\Events;
+use BoxC\Tracking\Exceptions\EventException;
 
 final class FetchingEventsTest extends TestCase
 {
 
     public function testListEvents()
     {
-        $obj = new Events();
+        $obj = new Events("en");
         $events = $obj->getAll();
         // $this->assertIsArray($events);
         $this->assertNotEmpty($events);
@@ -33,9 +34,18 @@ final class FetchingEventsTest extends TestCase
 
     public function testGetEvent()
     {
-        $obj = new Events();
-        $event = $obj->get(100);
+        $obj = new Events("en");
+        $event = $obj->getDescription(100);
         $this->assertEquals("SHIPMENT LABEL CREATED", $event);
+    }
+
+    public function testFileNotFound()
+    {
+        try {
+            $obj = new Events("zz");
+        } catch (EventException $e) {
+            $this->assertInstanceOf(EventException::class, $e);
+        }
     }
 
 }
