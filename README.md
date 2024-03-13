@@ -5,17 +5,18 @@ A dictionary of tracking events supported by BoxC. This library can be imported 
 ## Requirements
 
 Requires:
-- PHP >= 5.5
+- PHP >= 8.1
 
 ## Usage
 
 For listing and getting events:
 
 ```php
-$cls = new BoxC\Tracking\Events();
+$language = "en";
+$cls = new BoxC\Tracking\Events($language);
 // returns associated array of all events with key being the event code
 $cls->getAll();
 
 // outputs an event description
-$cls->get(100);
+$cls->getDescription(100);
 ```
