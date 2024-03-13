@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2022 BoxC Logistics
+ * Copyright 2024 BoxC Logistics
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,39 +21,56 @@ use BoxC\Tracking\Exceptions\EventException;
 
 class Events {
 
-    const FILE_LOCATION = "/data/events.json";
+    private const FILE_LOCATION = "/data/";
+    private const DEFAULT_LANGUAGE = "en";
 
     /**
-     * @var $dict List of events
+     * @property array $dict
      */
-    private $dict = [];
+    private array $dict = [];
 
     /**
      * Constructor
      * 
      * @return void
      */
-    public function __construct()
+    public function __construct(string $language = self::DEFAULT_LANGUAGE)
     {
-        $events = file_get_contents(__DIR__.self::FILE_LOCATION);
-        $this->dict = json_decode($events, true);
+        $fileName = __DIR__ . self::FILE_LOCATION . $language . ".json";
+        if (file_exists($fileName)) {
+            $events = file_get_contents($fileName);
+        } else {
+            throw new EventException(
+                sprintf("File not found: %s.json", $language)
+            );
+        }
+
+        $events = json_decode($events, true);
+        if ($events === false) {
+            throw new EventException(
+                sprintf("File can't be decoded: %s.json", $language)
+            );
+        }
+
+        $this->dict = $events;
     }
 
     /**
      * Gets an event description based on the code.
      * 
      * @param int $code
-     * 
      * @return string
      * @throws EventException
      */
-    public function get($code)
+    public function getDescription(int $code): string
     {
-        if (!array_key_exists((int) $code, $this->dict)) {
-            throw new EventException(sprintf("Event code '%s' does not exist.", $code));
+        if (array_key_exists($code, $this->dict) === false) {
+            throw new EventException(
+                sprintf("Event code '%s' does not exist.", $code)
+            );
         }
 
-        return $this->dict[(int) $code];
+        return $this->dict[$code];
     }
 
     /**
@@ -61,7 +78,7 @@ class Events {
      * 
      * @return array
      */
-    public function getAll()
+    public function getAll(): array
     {
         return $this->dict;
     }
