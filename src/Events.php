@@ -21,7 +21,7 @@ use BoxC\Tracking\Exceptions\EventException;
 
 class Events
 {
-    private const FILE_LOCATION = "/data/";
+    private const FILE_LOCATION = "/dictionary/";
     public const DEFAULT_LANGUAGE = "en";
 
     /**

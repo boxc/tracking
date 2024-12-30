@@ -1,6 +1,6 @@
 # BoxC Tracking
 
-A dictionary of tracking events supported by BoxC. This library can be imported into PHP projects. Might serve more purposes in the future.
+A model and dictionary of tracking events supported by BoxC.
 
 ## Requirements
 
