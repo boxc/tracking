@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 BoxC Logistics
+ * Copyright 2024 BoxC Logistics, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,6 @@ use BoxC\Tracking\Exceptions\EventException;
 
 final class FetchingEventsTest extends TestCase
 {
-
     public function testListEvents()
     {
         $obj = new Events("en");
@@ -42,7 +41,7 @@ final class FetchingEventsTest extends TestCase
     public function testFileNotFound()
     {
         try {
-            $obj = new Events("zz");
+            new Events("zz");
         } catch (EventException $e) {
             $this->assertInstanceOf(EventException::class, $e);
         }

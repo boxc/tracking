@@ -1,6 +1,5 @@
 {
     "name": "boxc/tracking",
-    "description": "A dictionary of tracking events supported by BoxC.",
     "type": "library",
     "license": "Apache 2.0",
     "keywords": [
@@ -15,13 +14,14 @@
     },
     "autoload": {
         "psr-4": {
-            "BoxC\\Tracking\\": "src/"
+            "BoxC\\Tracking\\": "src/",
+            "Tests\\": "tests/"
         }
     },
     "authors": [
         {
-            "name": "Justin Pope",
-            "email": "justin@boxc.com",
+            "name": "BoxC",
+            "email": "support@boxc.com",
             "role": "Developer"
         }
     ],

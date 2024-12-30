@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright 2024 BoxC Logistics
+ * Copyright 2024 BoxC Logistics, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,20 +19,19 @@ namespace BoxC\Tracking;
 
 use BoxC\Tracking\Exceptions\EventException;
 
-class Events {
-
+class Events
+{
     private const FILE_LOCATION = "/data/";
-    private const DEFAULT_LANGUAGE = "en";
+    public const DEFAULT_LANGUAGE = "en";
 
     /**
-     * @property array $dict
+     * @property array $dictionary
      */
-    private array $dict = [];
+    private array $dictionary = [];
 
     /**
-     * Constructor
-     * 
-     * @return void
+     * @param string $language
+     * @throws EventException
      */
     public function __construct(string $language = self::DEFAULT_LANGUAGE)
     {
@@ -52,7 +51,7 @@ class Events {
             );
         }
 
-        $this->dict = $events;
+        $this->dictionary = $events;
     }
 
     /**
@@ -64,13 +63,13 @@ class Events {
      */
     public function getDescription(int $code): string
     {
-        if (array_key_exists($code, $this->dict) === false) {
+        if (array_key_exists($code, $this->dictionary) === false) {
             throw new EventException(
                 sprintf("Event code '%s' does not exist.", $code)
             );
         }
 
-        return $this->dict[$code];
+        return $this->dictionary[$code];
     }
 
     /**
@@ -80,6 +79,6 @@ class Events {
      */
     public function getAll(): array
     {
-        return $this->dict;
+        return $this->dictionary;
     }
 }

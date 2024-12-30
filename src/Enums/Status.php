@@ -15,8 +15,15 @@
  * limitations under the License.
  */
 
-namespace BoxC\Tracking\Exceptions;
+namespace BoxC\Tracking\Enums;
 
-use Exception;
-
-class EventException extends Exception{}
+class Status
+{
+    const PENDING = 'Pending';
+    const PROCESSED = 'Processed';
+    const CANCELLED = 'Cancelled';
+    const CUSTOMS = 'Customs';
+    const EN_ROUTE = 'En Route';
+    const EXCEPTION = 'Exception';
+    const DELIVERED = 'Delivered';
+}
