@@ -18,12 +18,13 @@
 namespace BoxC\Tracking\Entities;
 
 use DateTime;
+use JsonSerializable;
 
 /**
  * Entity - Event
  *
  */
-class Event
+class Event implements JsonSerializable
 {
     public readonly DateTime $created;
 
@@ -54,4 +55,53 @@ class Event
         $this->created = new DateTime();
     }
 
+    /**
+     * @return array|null
+     */
+    public function toArray(): ?array
+    {
+        // Ignored event
+        if ($this->code === -1) {
+            return null;
+        }
+
+        // Unknown Event
+        if ($this->code === 0) {
+            return [
+                'tracking_number' => $this->tracking_number,
+                'carrier' => $this->carrier,
+                'description' => $this->description,
+                'location' => $this->location,
+                'city' => $this->city,
+                'province' => $this->province,
+                'postal_code' => $this->postal_code,
+                'country' => $this->country,
+                'time' => $this->time->format("Y-m-d H:i:s"),
+                'created' => $this->created->format("c")
+            ];
+        }
+
+        // Known Event
+        return [
+            'tracking_number' => $this->tracking_number,
+            'carrier' => $this->carrier,
+            'code' => $this->code,
+            'raw_description' => $this->description,
+            'raw_location' => $this->location,
+            'city' => $this->city,
+            'province' => $this->province,
+            'postal_code' => $this->postal_code,
+            'country' => $this->country,
+            'time' => $this->time->format("Y-m-d H:i:s"),
+            'created' => $this->created->format("c")
+        ];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function jsonSerialize(): mixed
+    {
+        return $this->toArray();
+    }
 }
