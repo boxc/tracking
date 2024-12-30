@@ -25,7 +25,7 @@ use DateTime;
  */
 class Event
 {
-    private readonly DateTime $created;
+    public readonly DateTime $created;
 
     /**
      * @param string $tracking_number
