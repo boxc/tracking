@@ -76,8 +76,8 @@ class Event implements JsonSerializable
                 'province' => $this->province,
                 'postal_code' => $this->postal_code,
                 'country' => $this->country,
-                'time' => new UTCDateTime($this->time),
-                'created' => new UTCDateTime($this->created),
+                'time' => $this->getEventTime(),
+                'created' => new UTCDateTime($this->created)
             ];
         }
 
@@ -92,7 +92,7 @@ class Event implements JsonSerializable
             'province' => $this->province,
             'postal_code' => $this->postal_code,
             'country' => $this->country,
-            'time' => new UTCDateTime($this->time),
+            'time' => $this->getEventTime(),
             'created' => new UTCDateTime($this->created)
         ];
     }
@@ -103,5 +103,18 @@ class Event implements JsonSerializable
     public function jsonSerialize(): mixed
     {
         return $this->toArray();
+    }
+
+    /**
+     * Strips timezone out of the datetime before saving.
+     * @return UTCDateTime
+     */
+    private function getEventTime(): UTCDateTime
+    {
+        return new UTCDateTime(
+            strtotime(
+                $this->time->format('Y-m-d H:i:s')
+            ) * 1000
+        );
     }
 }
