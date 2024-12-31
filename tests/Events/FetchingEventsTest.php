@@ -17,8 +17,11 @@
 
 namespace Tests\Events;
 
+use DateTime;
+use MongoDB\BSON\UTCDateTime;
 use PHPUnit\Framework\TestCase;
 use BoxC\Tracking\Events;
+use BoxC\Tracking\Entities\Event;
 use BoxC\Tracking\Exceptions\EventException;
 
 final class FetchingEventsTest extends TestCase
@@ -36,6 +39,29 @@ final class FetchingEventsTest extends TestCase
         $obj = new Events("en");
         $event = $obj->getDescription(100);
         $this->assertEquals("SHIPMENT LABEL CREATED", $event);
+    }
+
+    public function testEventCreate()
+    {
+        $obj = new Event(...[
+            'tracking_number' => "9214490181596700012000",
+            'code' => 110,
+            'carrier' => "BoxC",
+            'time' => new DateTime("now"),
+            'description' => "RECEIVED",
+            'location' => "New York, NY 12345",
+            'city' => "New York",
+            'province' => "NY",
+            'postal_code' => "12345",
+            'country' => "US"
+        ]);
+
+        $result = $obj->toArray();
+        var_dump($result);
+
+        $this->assertNotEmpty($result);
+        $this->assertArrayHasKey("created", $result);
+        $this->assertInstanceOf(UTCDateTime::class, $result['created']);
     }
 
     public function testFileNotFound()

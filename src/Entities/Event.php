@@ -22,9 +22,8 @@ use JsonSerializable;
 
 /**
  * Entity - Event
- *
  */
-class Event implements JsonSerializable
+use MongoDB\BSON\UTCDateTime;class Event implements JsonSerializable
 {
     public readonly DateTime $created;
 
@@ -76,8 +75,8 @@ class Event implements JsonSerializable
                 'province' => $this->province,
                 'postal_code' => $this->postal_code,
                 'country' => $this->country,
-                'time' => $this->time->format("Y-m-d H:i:s"),
-                'created' => $this->created->format("c")
+                'time' => new UTCDateTime($this->time),
+                'created' => new UTCDateTime($this->created),
             ];
         }
 
@@ -92,8 +91,8 @@ class Event implements JsonSerializable
             'province' => $this->province,
             'postal_code' => $this->postal_code,
             'country' => $this->country,
-            'time' => $this->time->format("Y-m-d H:i:s"),
-            'created' => $this->created->format("c")
+            'time' => new UTCDateTime($this->time),
+            'created' => new UTCDateTime($this->created)
         ];
     }
 
