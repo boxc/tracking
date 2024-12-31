@@ -19,11 +19,12 @@ namespace BoxC\Tracking\Entities;
 
 use DateTime;
 use JsonSerializable;
+use MongoDB\BSON\UTCDateTime;
 
 /**
  * Entity - Event
  */
-use MongoDB\BSON\UTCDateTime;class Event implements JsonSerializable
+class Event implements JsonSerializable
 {
     public readonly DateTime $created;
 
