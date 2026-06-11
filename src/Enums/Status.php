@@ -19,11 +19,11 @@ namespace BoxC\Tracking\Enums;
 
 class Status
 {
-    const PENDING = 'Pending';
-    const PROCESSED = 'Processed';
-    const CANCELLED = 'Cancelled';
-    const CUSTOMS = 'Customs';
-    const EN_ROUTE = 'En Route';
-    const EXCEPTION = 'Exception';
-    const DELIVERED = 'Delivered';
+    public const PENDING = 'Pending';
+    public const PROCESSED = 'Processed';
+    public const CANCELLED = 'Cancelled';
+    public const CUSTOMS = 'Customs';
+    public const EN_ROUTE = 'En Route';
+    public const EXCEPTION = 'Exception';
+    public const DELIVERED = 'Delivered';
 }
