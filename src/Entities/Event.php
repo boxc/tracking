@@ -21,9 +21,6 @@ use DateTime;
 use JsonSerializable;
 use MongoDB\BSON\UTCDateTime;
 
-/**
- * Entity - Event
- */
 class Event implements JsonSerializable
 {
     public readonly DateTime $created;
@@ -39,6 +36,8 @@ class Event implements JsonSerializable
      * @param string|null $province
      * @param string|null $postal_code
      * @param string|null $country
+     * @param float|null $latitude
+     * @param float|null $longitude
      */
     public function __construct(
         public readonly string $tracking_number,
@@ -50,7 +49,9 @@ class Event implements JsonSerializable
         public ?string $city = null,
         public ?string $province = null,
         public ?string $postal_code = null,
-        public ?string $country = null
+        public ?string $country = null,
+        public ?float $latitude = null,
+        public ?float $longitude = null,
     ) {
         $this->created = new DateTime();
     }
@@ -76,6 +77,8 @@ class Event implements JsonSerializable
                 'province' => $this->province,
                 'postal_code' => $this->postal_code,
                 'country' => $this->country,
+                'latitude' => $this->latitude,
+                'longitude' => $this->longitude,
                 'time' => $this->getEventTime(),
                 'created' => new UTCDateTime($this->created)
             ];
@@ -92,6 +95,8 @@ class Event implements JsonSerializable
             'province' => $this->province,
             'postal_code' => $this->postal_code,
             'country' => $this->country,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
             'time' => $this->getEventTime(),
             'created' => new UTCDateTime($this->created)
         ];

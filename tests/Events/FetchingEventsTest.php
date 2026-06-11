@@ -53,6 +53,8 @@ final class FetchingEventsTest extends TestCase
             'city' => "New York",
             'province' => "NY",
             'postal_code' => "12345",
+            'latitude' => null,
+            'longitude' => null,
             'country' => "US"
         ]);
 
