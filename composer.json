@@ -9,7 +9,7 @@
     ],
     "config": {
         "platform": {
-            "php": "8.1"
+            "php": "8.3"
         }
     },
     "autoload": {
@@ -21,12 +21,12 @@
     "authors": [
         {
             "name": "BoxC",
-            "email": "support@boxc.com",
+            "email": "support@boxc.dev",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": ">= 8.1",
+        "php": ">= 8.3",
         "ext-mongodb": "*"
     },
     "require-dev": {
