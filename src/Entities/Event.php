@@ -103,9 +103,9 @@ class Event implements JsonSerializable
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function jsonSerialize(): mixed
+    public function jsonSerialize(): array
     {
         return $this->toArray();
     }
