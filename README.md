@@ -5,7 +5,7 @@ A model and dictionary of tracking events supported by BoxC.
 ## Requirements
 
 Requires:
-- PHP >= 8.1
+- PHP >= 8.3
 - ext-mongodb
 
 ## Usage
